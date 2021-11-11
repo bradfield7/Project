@@ -1,0 +1,21 @@
+<html>
+    <table>
+        <tr bgcolor='Green'>
+		<td > Club </td>
+		<td > League</td>
+		<td> Operations </td>
+
+	</tr>
+	{%  for record in records %}
+
+		<tr>
+				<td> <a href="{{ url_for('clubInformation', clubno = record.clubno) }}"> {{ record.clubname }}</a> </td>
+				<td> {{record.league}} </td>
+				<td> <a href="{{ url_for('editclubForm', fanno = record.fanno) }}"> edit </a>, 
+					<a href="{{ url_for('deleteClub', fanno = record.fanno) }}"> delete </a>
+				</td>
+		</tr>
+
+	{% endfor %}
+</table>
+</html>

@@ -3,13 +3,27 @@ from application import app, db
 from application.forms import AddFan, UpdateFan, AddClub, UpdateClub
 from application.models import fan, club
 
+#@app.route('/')
+#def home():
+ #   fans = fan.query.all()
+#    return render_template('Homepage.html', records=fans)
+
 @app.route('/')
 def home():
+    return render_template('Homepage.html')
+
+@app.route('/fanlist')
+def fanlist():
     fans = fan.query.all()
-    return render_template('Homepage.html', records=fans)
+    return render_template('fanlist.html', records=fans)
+
+@app.route('/clublist')
+def clublist():
+    clubs = club.query.all()
+    return render_template('clublist.html', records=clubs)
 
 @app.route('/editfanRecord/<int:fanno>', methods=['GET', 'POST'])
-def editRecordForm(fanno):
+def editfanForm(fanno):
     form = UpdateFan()
     fan = fan.query.filter_by(fanno=fanno).first()
     if request.method == 'POST':
@@ -23,7 +37,7 @@ def editRecordForm(fanno):
     return render_template('faneditform.html', form=form)
 
 @app.route('/editclubRecord/<int:clubno>', methods=['GET', 'POST'])
-def editRecordForm(fanno):
+def editclubForm(fanno):
     form = UpdateClub()
     club = club.query.filter_by(clubno=clubno).first()
     if request.method == 'POST':
@@ -36,7 +50,7 @@ def editRecordForm(fanno):
 
 
 @app.route("/savefanRecord",methods=["GET","POST"])
-def saveRecord():
+def savefanRecord():
     form = AddFan()
     if request.method == 'POST':
         name=form.fan_name.data
@@ -51,7 +65,7 @@ def saveRecord():
     return render_template("faninputform.html", form=form)
 
 @app.route("/saveclubRecord",methods=["GET","POST"])
-def saveRecord():
+def saveclubRecord():
     form = AddClub()
     if request.method == 'POST':
         league = form.league.data
