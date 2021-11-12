@@ -12,4 +12,4 @@ class club(db.Model):
     clubno = db.Column(db.Integer, primary_key = True)
     clubname = db.Column(db.String(50), primary_key = True)
     league = db.Column(db.String(50))
-    fans = db.relationship('fan', backref='supports')
+ #   fans = db.relationship('fan', backref='supports')

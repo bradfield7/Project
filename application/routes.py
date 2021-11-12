@@ -25,7 +25,7 @@ def clublist():
 @app.route('/editfanRecord/<int:fanno>', methods=['GET', 'POST'])
 def editfanForm(fanno):
     form = UpdateFan()
-    fan = fan.query.filter_by(fanno=fanno).first()
+    fan1 = fan.query.filter_by(fanno=fanno).first()
     if request.method == 'POST':
         fan.name = form.fan_name.data
         fan.salary = form.salary.data
@@ -69,8 +69,8 @@ def saveclubRecord():
     form = AddClub()
     if request.method == 'POST':
         league = form.league.data
-        club = form.club.data
-        newclub = club(league=league, club=club)
+        club1 = form.club.data
+        newclub = club(clubname=club1,league=league )
         db.session.add(newclub)
         db.session.commit()
         return redirect("/")
@@ -88,8 +88,8 @@ def clubInformation(fanno):
 
 @app.route("/deleteFan/<int:fanno>")
 def deleteFan(fanno):
-    fan = fan.query.filter_by(fanno=fanno).first()
-    db.session.delete(fan)
+    fan1 = fan.query.filter_by(fanno=fanno).first()
+    db.session.delete(fan1)
     db.session.commit()
     return redirect("/")
 
