@@ -27,25 +27,26 @@ def editfanForm(fanno):
     form = UpdateFan()
     fan1 = fan.query.filter_by(fanno=fanno).first()
     if request.method == 'POST':
-        fan.name = form.fan_name.data
-        fan.salary = form.salary.data
-        fan.location = form.location.data
-        fan.club = form.club.data
-        fan.league = form.league.data
+        fan1.name = form.fan_name.data
+        fan1.salary = form.salary.data
+        fan1.location = form.location.data
+        fan1.club = form.club.data
+        fan1.league = form.league.data
+        fan1.club_id = form.club_id.data
         db.session.commit()
-        return redirect("/")
+        return redirect("/fanlist")
     return render_template('faneditform.html', form=form)
 
 @app.route('/editclubRecord/<int:clubno>', methods=['GET', 'POST'])
-def editclubForm(fanno):
+def editclubForm(clubno):
     form = UpdateClub()
-    club = club.query.filter_by(clubno=clubno).first()
+    club1 = club.query.filter_by(clubno=clubno).first()
     if request.method == 'POST':
-        club.league = form.league.data
-        club.club = form.club.data
+        club1.league = form.league.data
+        club1.clubname = form.club.data
         
         db.session.commit()
-        return redirect("/")
+        return redirect("/clublist")
     return render_template('clubeditform.html', form=form)
 
 
@@ -58,7 +59,8 @@ def savefanRecord():
         location=form.location.data
         club = form.club.data
         league = form.league.data
-        newfan = fan(name=name, salary=salary, location=location, club=club, league=league)
+        club_id = form.club_id.data
+        newfan = fan(name=name, salary=salary, location=location, club=club, league=league, club_id=club_id)
         db.session.add(newfan)
         db.session.commit()
         return redirect("/")
@@ -82,7 +84,7 @@ def fanInformation(fanno):
 	return render_template("faninformation.html",record=data)
 
 @app.route("/clubdetails/<int:clubno>")
-def clubInformation(fanno):
+def clubInformation(clubno):
 	data = club.query.filter_by(clubno=clubno).first()
 	return render_template("clubinformation.html",record=data)
 
@@ -95,7 +97,7 @@ def deleteFan(fanno):
 
 @app.route("/deleteClub/<int:clubno>")
 def deleteClub(clubno):
-    fan = club.query.filter_by(clubno=clubno).first()
-    db.session.delete(club)
+    club1 = club.query.filter_by(clubno=clubno).first()
+    db.session.delete(club1)
     db.session.commit()
     return redirect("/")

@@ -11,8 +11,8 @@
 		<tr>
 				<td> <a href="{{ url_for('clubInformation', clubno = record.clubno) }}"> {{ record.clubname }}</a> </td>
 				<td> {{record.league}} </td>
-				<td> <a href="{{ url_for('editclubForm', fanno = record.fanno) }}"> edit </a>, 
-					<a href="{{ url_for('deleteClub', fanno = record.fanno) }}"> delete </a>
+				<td> <a href="{{ url_for('editclubForm', clubno = record.clubno) }}"> edit </a>, 
+					<a href="{{ url_for('deleteClub', clubno = record.clubno) }}"> delete </a>
 				</td>
 		</tr>
 

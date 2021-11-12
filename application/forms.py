@@ -8,6 +8,7 @@ class AddFan(FlaskForm):
     location = StringField("Current location")
     league = SelectField('League', choices=['Premier League','Championship', 'League one', 'League two'])
     club = StringField("Club name")
+    club_id = IntegerField("Club ID")
     submit = SubmitField('Add fan details')
 
 class UpdateFan(FlaskForm):
@@ -16,6 +17,7 @@ class UpdateFan(FlaskForm):
     location = StringField("Current location")
     league = SelectField('League', choices=['Premier League','Championship', 'League one', 'League two'])
     club = StringField("Club name")
+    club_id = IntegerField("Club ID")
     submit = SubmitField('Update fan details')
 
 
