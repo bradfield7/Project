@@ -63,7 +63,7 @@ def savefanRecord():
         newfan = fan(name=name, salary=salary, location=location, club=club, league=league, club_id=club_id)
         db.session.add(newfan)
         db.session.commit()
-        return redirect("/")
+        return redirect("/fanlist")
     return render_template("faninputform.html", form=form)
 
 @app.route("/saveclubRecord",methods=["GET","POST"])
@@ -75,7 +75,7 @@ def saveclubRecord():
         newclub = club(clubname=club1,league=league )
         db.session.add(newclub)
         db.session.commit()
-        return redirect("/")
+        return redirect("/clublist")
     return render_template("clubinputform.html", form=form)
 
 @app.route("/fandetails/<int:fanno>")
