@@ -16,7 +16,7 @@ done
 if [ ${create} ]; then
   python3 create.py
 fi
-echo 'testing:'
+echo 'testing, testing:'
 python3 -m pytest --cov=application --cov-report html
 
 python3 app.py
